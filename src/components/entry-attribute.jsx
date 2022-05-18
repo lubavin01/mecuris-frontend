@@ -4,15 +4,9 @@ const EntryAttribute = ({ title, propertyName, value, setAttributeValue, inputTy
     return (
         <div style={{ padding: '10px' }}>
             <span>{title}</span>
-            <input
-                value={value}
-                onChange={e => setAttributeValue(propertyName, e.target.value)}
-                type={inputType}
-                placeholder={propertyName}
-            />
+            <input value={value} onChange={(e) => setAttributeValue(propertyName, e.target.value)} type={inputType} placeholder={propertyName} />
         </div>
-
     );
-}
+};
 
 export default EntryAttribute;

@@ -3,22 +3,22 @@ import React from 'react';
 const EntryItem = ({ entry, deleteEntry, modifyEntry, setRenderEntry }) => {
     const deleteItem = () => {
         deleteEntry(entry._id);
-    }
+    };
     const modifyItem = () => {
-        modifyEntry(entry)
-    }
+        modifyEntry(entry);
+    };
     const renderItem = () => {
-        setRenderEntry(entry)
-    }
+        setRenderEntry(entry);
+    };
     return (
-        <div className='entry'>
+        <div className="entry">
             <div className="post__content">
                 <strong>{entry._id}</strong>
                 <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                    <div className='attribute'>color: {entry.color}</div>
-                    <div className='attribute'>width: {entry.width}</div>
-                    <div className='attribute'>height: {entry.height}</div>
-                    <div className='attribute'>depth: {entry.depth}</div>
+                    <div className="attribute">color: {entry.color}</div>
+                    <div className="attribute">width: {entry.width}</div>
+                    <div className="attribute">height: {entry.height}</div>
+                    <div className="attribute">depth: {entry.depth}</div>
                 </div>
             </div>
             <div className="post__btns">
@@ -28,6 +28,6 @@ const EntryItem = ({ entry, deleteEntry, modifyEntry, setRenderEntry }) => {
             </div>
         </div>
     );
-}
+};
 
 export default EntryItem;

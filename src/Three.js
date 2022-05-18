@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const sceneSizes = {
-    width: window.innerWidth/2,
+    width: window.innerWidth / 2,
     height: window.innerHeight,
 };
 
@@ -23,14 +23,7 @@ export default class Three {
         const near = -400;
         const far = 400;
 
-        this.camera = new THREE.OrthographicCamera(
-            sceneSizes.width / -2,
-            sceneSizes.width / 2,
-            sceneSizes.height / 2,
-            sceneSizes.height / -2,
-            near,
-            far
-        );
+        this.camera = new THREE.OrthographicCamera(sceneSizes.width / -2, sceneSizes.width / 2, sceneSizes.height / 2, sceneSizes.height / -2, near, far);
 
         this.camera.position.set(0, 0, 1); // Обязательно нужно для работы OrbitControls
     }
@@ -59,8 +52,6 @@ export default class Three {
     render() {
         this.renderer.render(this.scene, this.camera);
     }
-
-
 
     initOrbitControls() {
         this.controls = new OrbitControls(this.camera, this.renderer.domElement);

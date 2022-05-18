@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { ObjectService } from "./API/ObjectService";
-import Three from "./Three";
+import React, { useEffect, useRef, useState } from 'react';
+import { ObjectService } from './API/ObjectService';
+import Three from './Three';
 
 import './styles/app.css';
-import EntryList from "./components/entry-list";
-import EntryForm from "./components/entry-form";
-import MyModal from "./components/UI/modal/my-modal";
+import EntryList from './components/entry-list';
+import EntryForm from './components/entry-form';
+import MyModal from './components/Ui/modal/my-modal';
 
 function App() {
     const threeJsObject = useRef();
@@ -24,43 +24,45 @@ function App() {
         setEntries(entries);
 
         if (entries.length) {
-            setRenderEntry(entries[0])
+            setRenderEntry(entries[0]);
         }
-    }
+    };
 
     const deleteEntry = async (id) => {
         await ObjectService.deleteEntry(id);
 
-        const newEntries = entries.filter(entry => entry._id !== id);
+        const newEntries = entries.filter((entry) => entry._id !== id);
         setEntries(newEntries);
-    }
+    };
 
     const submitEntry = async (modifiedEntry) => {
         if (modifiedEntry._id) {
+            // Modified existing one
             await ObjectService.updateEntry(modifiedEntry);
-            const newEntries = entries.map(entry => {
+            const newEntries = entries.map((entry) => {
                 if (entry._id === modifiedEntry._id) {
                     if (renderEntry === entry) {
-                        setRenderEntry(modifiedEntry)
+                        setRenderEntry(modifiedEntry);
                     }
                     return modifiedEntry;
                 }
 
                 return entry;
-            })
+            });
 
             setEntries(newEntries);
         } else {
+            // Created a new one
             const entry = await ObjectService.createEntry(modifiedEntry);
             setEntries([...entries, entry]);
         }
 
         setModalData({ visibility: false, data: {} });
-    }
+    };
 
     const modifyEntry = (entry) => {
         setModalData({ visibility: true, data: entry });
-    }
+    };
 
     useEffect(() => {
         initialize();
@@ -72,25 +74,22 @@ function App() {
             threeJsObject.current.render();
             threeJsObject.current.animate();
         }
-    }, [renderEntry])
+    }, [renderEntry]);
 
     return (
         <div className="App" style={{ display: 'flex', justifyContent: 'space-between' }}>
             <MyModal visible={modalData.visibility} setModalData={setModalData}>
                 <EntryForm submitEntry={submitEntry} data={modalData.data} />
             </MyModal>
-            <div className="entry-container" >
+            <div className="entry-container">
                 <h1>Entries</h1>
-                <button style={{ width: '50px' }} onClick={() => setModalData({ visibility: true, data: {} })}>Create</button>
-                <EntryList
-                    entries={entries}
-                    deleteEntry={deleteEntry}
-                    modifyEntry={modifyEntry}
-                    setRenderEntry={setRenderEntry}
-                />
+                <button style={{ width: '50px' }} onClick={() => setModalData({ visibility: true, data: {} })}>
+                    Create
+                </button>
+                <EntryList entries={entries} deleteEntry={deleteEntry} modifyEntry={modifyEntry} setRenderEntry={setRenderEntry} />
             </div>
             <div className="container" ref={threeRef} />
-        </div >
+        </div>
     );
 }
 

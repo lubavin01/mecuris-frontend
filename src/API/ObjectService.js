@@ -18,7 +18,6 @@ export class ObjectService {
     static async updateEntry(entry) {
         const { _id: entryId, color = '', width = 0, height = 0, depth = 0, positionX = 0, positionY = 0, positionZ = 0 } = entry;
         await axios.put(`/entries/${entryId}`, { color, width, height, depth, positionX, positionY, positionZ }, { baseURL: BASE_URL });
-
     }
 
     static async deleteEntry(entryId) {

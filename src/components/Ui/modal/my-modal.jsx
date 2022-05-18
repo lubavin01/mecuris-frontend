@@ -2,10 +2,9 @@ import React from 'react';
 import classes from './my-modal.module.css';
 
 const MyModal = ({ children, visible, setModalData }) => {
-
     const modalClasses = [classes.myModal];
     if (visible) {
-        modalClasses.push(classes.active)
+        modalClasses.push(classes.active);
     }
 
     return (
@@ -13,9 +12,8 @@ const MyModal = ({ children, visible, setModalData }) => {
             <div className={classes.myModalContent} onClick={(e) => e.stopPropagation()}>
                 {children}
             </div>
-
         </div>
     );
-}
+};
 
 export default MyModal;
