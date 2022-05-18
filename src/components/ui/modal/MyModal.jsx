@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './my-modal.module.css';
+import classes from './MyModal.module.css';
 
 const MyModal = ({ children, visible, setModalData }) => {
     const modalClasses = [classes.myModal];

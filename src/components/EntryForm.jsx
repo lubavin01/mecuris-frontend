@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import EntryAttribute from './entry-attribute';
+import EntryAttribute from './EntryAttribute';
 
 const EntryForm = ({ submitEntry, data }) => {
     const defaultEntry = { _id: '', color: '', width: 0, height: 0, depth: 0, positionX: 0, positionY: 0, positionZ: 0 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import EntryItem from './entry-item';
+import EntryItem from './EntryItem';
 
 const EntryList = ({ entries, deleteEntry, modifyEntry, setRenderEntry }) => {
     return (
