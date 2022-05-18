@@ -74,7 +74,7 @@ function EntriesListPage() {
 
     useEffect(() => {
         initialize();
-    }, [initialize]);
+    }, []);
 
     useEffect(() => {
         if (threeJsObject.current && renderEntry) {
@@ -84,6 +84,10 @@ function EntriesListPage() {
         }
     }, [renderEntry]);
 
+    useEffect(() => {
+        console.log('useEffect - modal Data', { modalData });
+    }, [modalData]);
+
     return (
         <div className="App" style={{ display: 'flex', justifyContent: 'space-between' }}>
             <MyModal visible={modalData.visibility} setModalData={setModalData}>
@@ -91,7 +95,13 @@ function EntriesListPage() {
             </MyModal>
             <div className="entry-container">
                 <h1>Entries</h1>
-                <button style={{ width: '50px' }} onClick={() => setModalData({ visibility: true, data: {} })}>
+                <button
+                    style={{ width: '50px' }}
+                    onClick={() => {
+                        console.log('create click', { modalData });
+                        setModalData({ visibility: true, data: {} });
+                    }}
+                >
                     Create
                 </button>
                 <EntryList entries={entries} deleteEntry={deleteEntry} modifyEntry={modifyEntry} setRenderEntry={setRenderEntry} />

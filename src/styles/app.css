@@ -24,3 +24,9 @@
 .attribute {
     margin: 5px;
 }
+
+.form__content {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}

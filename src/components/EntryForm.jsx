@@ -8,9 +8,7 @@ const EntryForm = ({ submitEntry, data }) => {
     const [entryFormData, setEntryFormData] = useState(defaultEntry);
 
     useEffect(() => {
-        if (data) {
-            setEntryFormData(data);
-        }
+        setEntryFormData(data);
     }, [data]);
 
     const submitEntryForm = (e) => {
@@ -37,7 +35,7 @@ const EntryForm = ({ submitEntry, data }) => {
     return (
         <form>
             {entryFormData._id ? <strong>Modify {entryFormData._id}</strong> : <strong>Create new</strong>}
-            <div style={{ margin: '10px', display: 'flex', justifyContent: 'space-between' }}>
+            <div className="form__content">
                 <EntryAttribute title="Color: " propertyName="color" value={entryFormData.color} setAttributeValue={setAttributeValue} inputType="color" />
 
                 <EntryAttribute title="Width: " propertyName="width" value={entryFormData.width} setAttributeValue={setAttributeValue} inputType="number" />
