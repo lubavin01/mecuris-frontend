@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.entry-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 15px;
+    text-align: center;
+}
+
+.entry {
+    display: flex;
+    padding: 15px;
+    border: 2px solid teal;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.attribute {
+    margin: 5px;
+}
