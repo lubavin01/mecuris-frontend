@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ObjectService } from './API/ObjectService';
+import { ObjectService } from './Api/ObjectService';
 import Three from './Three';
 
 import './styles/app.css';
