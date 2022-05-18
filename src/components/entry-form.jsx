@@ -26,7 +26,6 @@ const EntryForm = ({ submitEntry, data }) => {
             positionY: entryFormData.positionY,
             positionZ: entryFormData.positionZ,
         };
-        console.log('submitEntryForm', { newEntry });
         submitEntry(newEntry);
 
         setEntryFormData(defaultEntry);

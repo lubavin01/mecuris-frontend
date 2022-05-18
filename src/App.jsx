@@ -11,9 +11,9 @@ function App() {
     const threeJsObject = useRef();
     const threeRef = useRef();
 
-    const [entries, setEntries] = useState([]);
-    const [modalData, setModalData] = useState({ visibility: false, data: {} });
-    const [renderEntry, setRenderEntry] = useState();
+    const [entries, setEntries] = useState([]); // list of entries
+    const [modalData, setModalData] = useState({ visibility: false, data: {} }); // modal window
+    const [renderEntry, setRenderEntry] = useState(); // current rendering entry
 
     const initialize = async () => {
         threeJsObject.current = new Three(threeRef.current);
@@ -40,6 +40,9 @@ function App() {
             await ObjectService.updateEntry(modifiedEntry);
             const newEntries = entries.map(entry => {
                 if (entry._id === modifiedEntry._id) {
+                    if (renderEntry === entry) {
+                        setRenderEntry(modifiedEntry)
+                    }
                     return modifiedEntry;
                 }
 
@@ -73,12 +76,12 @@ function App() {
 
     return (
         <div className="App" style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <MyModal visible={modalData.visibility} setModalData={setModalData}>
+                <EntryForm submitEntry={submitEntry} data={modalData.data} />
+            </MyModal>
             <div className="entry-container" >
                 <h1>Entries</h1>
                 <button style={{ width: '50px' }} onClick={() => setModalData({ visibility: true, data: {} })}>Create</button>
-                <MyModal visible={modalData.visibility} setModalData={setModalData}>
-                    <EntryForm submitEntry={submitEntry} data={modalData.data} />
-                </MyModal>
                 <EntryList
                     entries={entries}
                     deleteEntry={deleteEntry}
